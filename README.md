@@ -1,5 +1,7 @@
 # Server Monitor
 
+[Live Demo](https://monitor.bluesquare23.sh/)
+
 ## Overview / How it works
 
 This project is a python Flask application built to keep tabs on a few home
