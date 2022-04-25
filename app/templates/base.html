@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+
+	{% block head %}{% endblock %}
+
+	<meta name="description" content="Internal Server Monitoring">
+	<meta name="keywords" content="python flask bootstrap sqlite sqlalchemy">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+	<link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+
+    {% if refresh == "true" %}
+        <meta http-equiv="refresh" content="15" />
+    {% endif %}
+</head>
+
+<body>
+<a name="top"></a>
+
+    <!-- Nice Bootstrap CSS Navbar -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="/">Server Monitoring</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+		    </button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<li class="nav-item active" aria-current="page">
+					<a class="nav-link" href="/">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/add_host">Add Host</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/all_hosts">All Hosts</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="?auto_refresh=true">Auto Refresh</a>
+				</li>
+			</ul>
+			</div>
+  		</div>
+	</nav>
+
+    <!-- Nice CSS wrapping for Flask message flashing -->
+	{% with messages = get_flashed_messages(with_categories=True) %}
+		{% if messages %}
+			{% for category, message in messages %}
+				{% if category == "error" %}
+
+				<div class="alert alert-danger alert-dismissable fade show" 
+					role="alert">
+
+				{{ message }}
+				<button type="button" 
+					class="close" 
+					aria-label="Close"
+					data-bs-dismiss="alert">
+				&#10060;
+				</button>
+				</div>
+
+				{% else %}
+
+				<div class="alert alert-success alert-dismissable fade show" 
+					role="alert">
+
+				{{ message }}
+
+				<button type="button" 
+					class="close"
+					aria-label="Close"
+					data-bs-dismiss="alert">
+				&#10004;&#65039;
+				</button>
+				</div>
+				{% endif %}
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+
+    <!-- Main body block -->
+	{% block body %}{% endblock %}
+
+	<button id="topBtn"><a href="#top" style="color: white">/\ Top /\</a></button>
+
+	<!-- Bootstrap JavaScript Bundle with jQuery slim & Popper -->
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+</body>
+</html>

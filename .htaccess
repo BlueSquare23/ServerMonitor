@@ -1,0 +1,10 @@
+# Explicitly allow access to only a few end-points instead of explicitly
+# denying access to many.
+RewriteEngine On
+RewriteRule "(^|/)(^static)" - [PT] 
+RewriteRule "(^|/)(^all_hosts)" - [PT] 
+RewriteRule "(^|/)(^all_logs)" - [PT] 
+RewriteRule "(^|/)(^clear_outage)" - [PT] 
+RewriteRule "(^|/)(\^.well-known)" - [PT] 
+RewriteRule "^$" - [PT]
+RewriteRule "^(.*/)?" - [R=404]

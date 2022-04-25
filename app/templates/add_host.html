@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block head %}
+	<title>Server Monitoring</title>
+{% endblock %}
+
+{% block body %}
+<div id="invisible-container" class="container-fluid">
+</div>
+
+<div id="basic-bg-container" class="container-lg">
+
+<form method="POST">
+	<h3 align="center" class="text-white">
+		Add New Host
+	</h3>
+	<div class="form-group text-white">
+		<label for="hostname">Hostname</label>
+		<input type="text" 
+			id="hostname" 
+			name="hostname" 
+			class="form-control text-white-50 bg-dark"
+			placeholder="Enter New Hostname"
+		/>
+
+		<label for="hostkey1">Hostkey</label>
+		<input type="password"
+			id="hostkey1"
+			name="hostkey1"
+			class="form-control text-white-50 bg-dark"
+			placeholder="Enter Hostkey"
+		/>
+
+		<label for="hostkey2">Confirm Hostkey</label>
+		<input type="password"
+			id="hostkey2"
+			name="hostkey2"
+			class="form-control text-white-50 bg-dark"
+			placeholder="Retype Hostkey"
+		/>
+
+		<div class="form-check">
+		 	<input class="form-check-input bg-dark" name="slack_notify" type="checkbox" value="on" id="flexCheckDefault">
+		 	<label class="form-check-label" for="flexCheckDefault">
+				Enable Slack Notifications?
+			</label>
+		</div>
+
+		<br/>
+
+		<center>
+		<button class="btn btn-primary" 
+			type="submit">Add Host
+		</button>
+		</center>		
+	</div>
+</form>
+
+</div>
+
+{% endblock %}
+

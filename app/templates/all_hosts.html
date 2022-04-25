@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block head %}
+	<title>Server Monitoring</title>
+{% endblock %}
+
+{% block body %}
+
+<div id="invisible-container" class="container-fluid">
+</div>
+
+<div id="basic-bg-container" class="container-lg text-white">
+	<h3 align="center">
+		All Hosts
+	</h3>
+
+<div class="table-responsive-lg">
+
+	<table class="table table-hover table-bordered table-dark">
+		<tr>
+			<th>Hostname</th>
+			<th>Date Added</th>
+			<th>Slack Alerts</th>
+			<th>Remove Host</th>
+		</tr>
+
+	{% for host in hosts %}
+		<tr>
+			<td><a style="color:red" href="/all_logs/{{ host.hostname }}">{{ host.hostname }}</a></td>
+			<td>{{ host.date_created }}</td>
+		{% if 'on' in host.slack_notify %}
+			<td><b>Status: </b>Enabled
+			<br>
+			<a style="color:red" href="/update_host/{{ host.id }}">Click here to disable!</a>
+		{% else %}
+			<td><b>Status: </b>Disabled
+			<br>
+			<a style="color:red" href="/update_host/{{ host.id }}">Click here to enable!</a>
+			</td>
+		{% endif %}
+			
+			<td><a style="color:red" href="/delete_host/{{ host.id }}">Delete Host #{{ host.id }}</a></td>
+		</tr>
+	{% endfor %}
+
+	</table>
+
+</div>
+
+</div>
+
+{% endblock %}
+

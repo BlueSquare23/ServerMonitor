@@ -1,0 +1,29 @@
+<div id="invisible-container" class="container-fluid">
+</div>
+
+<div id="basic-bg-container" class="container-lg text-white">
+	<h3>Active Alerts!</h3>
+
+<div class="table-responsive-lg">
+
+<table class="table table-hover table-bordered table-dark">
+
+	<tr>
+		<th>Server</th>
+		<th>Status</th>
+		<th>Last Reported In</th>
+	</tr>
+
+	{% for alert in alerts %}
+	<tr>
+		<td class="bg-danger"><a href="/all_logs/{{ alert.host }}">{{ alert.host }}</a></td>
+		<td class="bg-danger text-warning"><b>DOWN</b></td>
+		<td class="bg-danger text-warning">{{ alert.last_logged }}</td>
+	</tr>
+	{% endfor %}
+
+</table>
+
+</div>
+
+</div>

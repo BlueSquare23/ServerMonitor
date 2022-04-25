@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block head %}
+	<title>Server Monitoring</title>
+{% endblock %}
+
+{% block body %}
+
+{% if outages|length < 1 %}
+{% else %}
+	{% include 'outages.html' %}
+{% endif %}
+
+{% if alerts|length < 1 %}
+{% else %}
+	{% include 'alerts.html' %}
+{% endif %}
+
+<div id="invisible-container" class="container-fluid">
+</div>
+
+<div id="basic-bg-container" class="container-lg text-white">
+	<h3>Recent Logs For All Hosts</h3>
+
+<div class="table-responsive-lg">
+
+	<table class="table table-hover table-dark table-bordered table-condensed">
+		<tr class="bg-primary">
+			<th>Server</th>
+			<th>SSH Status</th>
+			<th>Uptime</th>
+			<th>Misc Service Status</th>
+			<th>%Mem Used</th>
+			<th>Avg Temp</th>
+			<th>Date/Time</th>
+		</tr>
+
+		{% for entry in entries %}
+		<tr>
+			<td class="bg-active"><a style="color:red" href="/all_logs/{{ entry.host }}">{{ entry.host }}</a></td>
+			<td class="bg-active">{{ entry.ssh_status }}</td>
+			<td class="bg-active">{{ entry.uptime }}</td>
+			<td class="bg-active">{{ entry.misc_status }}</td>
+			<td class="bg-active">{{ entry.mem_used }}%</td>
+			<td class="bg-active">{{ entry.avg_temp }}&#8451;</td>
+			<td class="bg-active">{{ entry.date_created }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+</div>
+
+</div>
+
+{% endblock %}
+

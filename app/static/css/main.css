@@ -1,0 +1,26 @@
+/* This is the sytlesheet for John's Homemade Server Monitor flask app */
+/* CSS is hard, plz dont judge :( */
+
+body {
+  background-image: url('/static/img/pollock.jpg');
+  background-repeat: repeat;
+}
+
+#topBtn {
+	position: fixed;
+	right: 30px;
+	bottom: 20px;
+	font-size: 12px;
+	border-color: rgba(85, 85, 85, 0.2);
+	background-color: rgb(100,100,100);
+}
+
+#invisible-container {
+  padding: 0px 0px 25px 0px;
+}
+
+#basic-bg-container {
+  background-color: blue;
+  padding: 5px 15px 5px 15px;
+}
+
