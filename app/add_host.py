@@ -32,11 +32,7 @@ def add_host():
 		elif len(hostkey1) < 8:
 			flash('Hostkey is too short!', category='error')
 		else:
-			# Add the new_user to the database, then redirect home
-			new_host = Host(hostname=hostname, hostkey=generate_password_hash(hostkey1, method='sha256'), slack_notify=slack_notify)
-			db.session.add(new_host)
-			db.session.commit()
-			flash('Host Added!')
+			flash('Cannot add host on demo site!', category='error')
 			return redirect('/add_host')
 
 	return render_template("add_host.html")

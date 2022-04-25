@@ -9,13 +9,5 @@ delete_host_blueprint = Blueprint("delete_host_blueprint", __name__)
 
 def delete_host(id):
 	host_to_delete = Host.query.get_or_404(id)
-
-	try:
-		db.session.delete(host_to_delete)
-		db.session.commit()
-		flash('Host Deleted!', category='success')
-		return redirect('/all_hosts')
-	except:
-		flash('Cannot Delete Host!', category='error')
-		return redirect('/all_hosts')
-
+	flash('Cannot delete host on demo site!', category='error')
+	return redirect('/all_hosts')
