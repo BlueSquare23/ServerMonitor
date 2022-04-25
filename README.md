@@ -38,8 +38,8 @@ git clone https://github.com/BlueSquare23/ServerMonitor.git
 
 ```
 cd ServerMonitor
-virtualenv venv				# Virtual Env Optional
-source venv/bin/activate	# Virtual Env Optional
+virtualenv venv	            # Virtual Env Optional
+source venv/bin/activate    # Virtual Env Optional
 pip3 install -r requirements.txt
 ```
 
@@ -68,15 +68,15 @@ HOSTKEY='Unique Host's Hostkey'
 curl -s \
 	-H "Content-Type: application/json" \
 	-d "{ 
-			\"host\":\"Your Host's Name\", 
-			\"host_key\":\"$HOSTKEY\", 
-			\"ssh_status\":\"$SSH_STATUS\", 
-			\"misc_status\":\"Plex: $PLEX_STATUS\",
-			\"avg_temp\":\"$AVERAGE_TEMP\", 
-			\"uptime\":\"$UPTIME\", 
-			\"mem_used\":\"$MEM_USED\" 
-		}" \
-	-X POST https://monitor.bluesquare23.sh
+		\"host\":\"Your Host's Name\", 
+		\"host_key\":\"$HOSTKEY\", 
+		\"ssh_status\":\"$SSH_STATUS\", 
+		\"misc_status\":\"Plex: $PLEX_STATUS\",
+		\"avg_temp\":\"$AVERAGE_TEMP\", 
+		\"uptime\":\"$UPTIME\", 
+		\"mem_used\":\"$MEM_USED\" 
+	}" \
+	-X POST https://monitor.bluesquare23.sh/submit
 ```
 
 ## Technologies
