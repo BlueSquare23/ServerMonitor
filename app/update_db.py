@@ -4,7 +4,7 @@ from . import db
 from .slackapi import post_alert
 
 # The amount of time in minutes before a host is reported as down.
-timeframe = .5
+timeframe = 7
 
 def update_db():
 	# Returns the most recently logged entry for any host from the Log table.
