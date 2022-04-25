@@ -5,8 +5,8 @@ from werkzeug.security import generate_password_hash
 
 add_host_blueprint = Blueprint("add_host_blueprint", __name__)
 
-@add_host_blueprint.route("/", methods=['GET', 'POST'])
-def sign_up():
+@add_host_blueprint.route("", methods=['GET', 'POST'])
+def add_host():
 	if request.method == 'POST':
 		# Collect form data
 		hostname = request.form.get("hostname")
@@ -16,6 +16,11 @@ def sign_up():
 
 		if slack_notify == None:
 			slack_notify = "off"
+
+		# Makesure form is filled out.
+		if bool(hostname) != True or bool(hostkey1) != True or bool(hostkey2) != True:
+			flash('Please enter all required information!', category='error')
+			return render_template("add_host.html")
 
 		# Check if submitted form data for issues.
 		hostname_exists = Host.query.filter_by(hostname=hostname).first()
@@ -32,6 +37,6 @@ def sign_up():
 			db.session.add(new_host)
 			db.session.commit()
 			flash('Host Added!')
-			return redirect('/')
+			return redirect('/add_host')
 
 	return render_template("add_host.html")

@@ -3,7 +3,7 @@ from .models import Host
 
 all_hosts_blueprint = Blueprint("all_hosts_blueprint", __name__)
 
-@all_hosts_blueprint.route('/', methods=['GET'])
+@all_hosts_blueprint.route('', methods=['GET'])
 
 def all_hosts():
 

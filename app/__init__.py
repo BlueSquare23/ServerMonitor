@@ -20,6 +20,10 @@ def run_app():
 	from app.index import index
 	app.register_blueprint(index, url_prefix="/")
 	
+	# Pull in submit route 
+	from app.submit import submit_blueprint
+	app.register_blueprint(submit_blueprint, url_prefix="/submit")
+
 	# Pull in add_host route.
 	from .add_host import add_host_blueprint
 	app.register_blueprint(add_host_blueprint, url_prefix="/add_host")
